@@ -54,9 +54,6 @@ while True:
         xData.append(x)
         #print('X={0}, Y={1}, Z={2}'.format(x, y, z))
         # Wait half a second and repeat.
-        print (x)
-        print (xData)
-        print (len(xData))
     end = time.time()
     print(end-start)
     time.sleep(1)
@@ -72,7 +69,8 @@ while True:
     print ("Ferquencies:",x)
     print ("G values",y)
     xData=[]
-    gHigh = np.max(y)
+    yNoPeakArray = y[1:]
+    gHigh = np.max(yNoPeakArray)
     print(gHigh)
     gHighPos = np.where(y == gHigh)
     print(gHighPos)
