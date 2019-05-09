@@ -55,7 +55,7 @@ while True:
         #print('X={0}, Y={1}, Z={2}'.format(x, y, z))
         # Wait half a second and repeat.
     end = time.time()
-    print(end-start)
+    print("Time taken :",end-start)
     time.sleep(1)
     N = len(xData)
     # Nyquist Sampling Criteria
@@ -66,17 +66,30 @@ while True:
     yr = fft(xData) # "raw" FFT with both + and - frequencies
     y = 2/N * np.abs(yr[0:np.int(N/2)]) # positive freqs only
 
-    print ("Ferquencies:",x)
-    print ("G values",y)
+    #print ("Ferquencies:",x)
+    #print ("G values",y)
     xData=[]
     yNoPeakArray = y[1:]
     gHigh = np.max(yNoPeakArray)
-    print(gHigh)
+    #print(gHigh)
     gHighPos = np.where(y == gHigh)
-    print(gHighPos)
+    #print(gHighPos)
     freqData = x[gHighPos] 
 
     print("Peak :",gHigh)
+    print("\n")
     print("Osteoporosis freq = ", freqData)
-
+    print("\n")
+    print("#########################")
+    if freqData>0 and freqData<76.8:
+        print("Severe Osteoporosis")
+    elif freqData>76.8 and freqData<96.8:
+        print("Osteoporosis")
+    elif freqData>96.8 and freqData<118.7:
+        print("Osteopenia")
+    else:
+        print("Normal")
+    print("#########################")
+    print("\n")
+    time.sleep(5)
 
